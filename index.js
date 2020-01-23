@@ -50,13 +50,31 @@ function isPalindrome(string){
   return lettersArr.join('') === lettersArr.reverse().join('')
   //if (lettersArr.join('') === lettersArr.reverse().join('')) return true; else return false
 }
-console.log(isPalindrome("madam i'm adam"))
+//console.log(isPalindrome("madam i'm adam"))
 
 ////////////////////////////////////////////////////////////////////
 /// 4. Caesar Cipher                                            ///
 //////////////////////////////////////////////////////////////////
 
+function caesarCipher(string, num){
+  const characters = 'abcdefghijklmnopqrstuvwxyz'.split('')
+  string = string.toLowerCase()
+  stringArr = string.split('')
+  let changingString = []
 
+  stringArr.map(char => {
+    if (characters.indexOf(char) > -1 && characters.includes(char)){
+      let index = characters.indexOf(char) + num
+      char = characters[index]
+      changingString.push(char) 
+    }else{
+      changingString.push(char) 
+    }
+  })
+  //console.log(changingString)
+  return changingString.join('')
+}
+console.log(caesarCipher('', 5))
 
 ////////////////////////////////////////////////////////////////////
 /// 5. Reverse Words                                            ///
