@@ -64,7 +64,9 @@ function caesarCipher(string, num){
 
   stringArr.map(char => {
     if (characters.indexOf(char) > -1 && characters.includes(char)){
-      let index = characters.indexOf(char) + num
+      //if index > 25 then return in the first index of list
+      let index = (characters.indexOf(char) + num) > 25 ? (characters.indexOf(char) + num - 26) : (characters.indexOf(char) + num) 
+      
       char = characters[index]
       changingString.push(char) 
     }else{
@@ -74,7 +76,7 @@ function caesarCipher(string, num){
   //console.log(changingString)
   return changingString.join('')
 }
-console.log(caesarCipher('', 5))
+console.log(caesarCipher('z', 1))
 
 ////////////////////////////////////////////////////////////////////
 /// 5. Reverse Words                                            ///
