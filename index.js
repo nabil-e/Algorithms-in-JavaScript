@@ -58,15 +58,20 @@ function isPalindrome(string){
 
 function caesarCipher(string, num){
   const characters = 'abcdefghijklmnopqrstuvwxyz'.split('')
-  string = string.toLowerCase()
-  stringArr = string.split('')
+  const lowerCaseString = string.toLowerCase()
+  num = num % 26
+  const stringArr =lowerCaseString.split('')
   let changingString = []
 
   stringArr.map(char => {
-    if (characters.indexOf(char) > -1 && characters.includes(char)){
-      //if index > 25 then return in the first index of list
-      let index = (characters.indexOf(char) + num) > 25 ? (characters.indexOf(char) + num - 26) : (characters.indexOf(char) + num) 
+    let charIndex = characters.indexOf(char)
+    if (charIndex > -1 && characters.includes(char)){
       
+      //Verify if index > 25 then return in the first index of list
+      let index = charIndex + num > 25 ? charIndex + num - 26 : charIndex + num < 0 ? charIndex + num + 26 : charIndex + num 
+      // verify if string is upper case
+      // ??
+
       char = characters[index]
       changingString.push(char) 
     }else{
@@ -76,14 +81,30 @@ function caesarCipher(string, num){
   //console.log(changingString)
   return changingString.join('')
 }
-console.log(caesarCipher('z', 1))
+//caesarCipher('javascript', -900)
 
 ////////////////////////////////////////////////////////////////////
 /// 5. Reverse Words                                            ///
 //////////////////////////////////////////////////////////////////
 
+function reverseWords(string){
+  const stringArr = string.split(' ')
+  let reverseString = ''
+  let newWord = []
 
-
+  stringArr.map(word => {
+    let wordArr = word.split('')
+    wordArr.map(chars => {
+      for (let i = 0; i < chars.length; i++){
+        newWord.unshift(chars[i])
+      }
+    })
+    reverseString = `${reverseString} ${newWord.join('')}`
+    newWord = []
+  })
+  return reverseString
+}
+console.log(reverseWords('il etais une fois'))
 ////////////////////////////////////////////////////////////////////
 /// 6. Reverse Array In Place                                   ///
 //////////////////////////////////////////////////////////////////
